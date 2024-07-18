@@ -6,10 +6,12 @@ import imgMoney from "@/assets/img-money.png";
 import Popup from "@/components/Popup";
 import "./index.css";
 import WithdrawPopup from "./WithdrawPopup";
+import WithdrawRecordPopup from "./WithdrawRecordPopup";
 import { useState } from "react";
 
 function WithdrawListPopup({ open, onClose }) {
   const [withdrawOpen, setWithdrawOpen] = useState(false);
+  const [recordOpen, setRecordOpen] = useState(false);
 
   return (
     <>
@@ -21,7 +23,7 @@ function WithdrawListPopup({ open, onClose }) {
         </div>
         <div className="flex justify-between leading-[22px] w-full mt-[20px]">
           <span className=" font-bold ">Select Withdraw Amount</span>
-          <div className="flex items-center">
+          <div className="flex items-center" onClick={() => setRecordOpen(true)}>
             <span>Record</span>
             <img
               src={iconArrowRight}
@@ -47,6 +49,7 @@ function WithdrawListPopup({ open, onClose }) {
         </div>
       </Popup>
       <WithdrawPopup open={withdrawOpen} onClose={() => setWithdrawOpen(false)}/>
+      <WithdrawRecordPopup open={recordOpen} onClose={() => setRecordOpen(false)}/>
     </>
   );
 }

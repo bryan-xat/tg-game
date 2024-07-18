@@ -13,6 +13,9 @@
   --tag-color: #924b24;
   --btn-color: rgba(255, 255, 255, 0.35);
   --select: rgba(52, 58, 59, 0.05);
+  --warning: #FF9000;
+  --secondary: rgba(34, 39, 39, 0.6);
+  --least: rgba(34, 39, 39, 0.35);
 }
 
 body {
@@ -38,4 +41,20 @@ body {
 
 .text-main {
   color: var(--text-color);
+}
+
+.text-warning {
+  color: var(--warning);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-least {
+  color: var(--least);
+}
+
+.text-secondary {
+  color: var(--secondary);
 }
