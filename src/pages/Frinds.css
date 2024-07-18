@@ -1,0 +1,24 @@
+.friends-content {
+  background-color: rgba(15, 205, 43, 0.06);
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.badge {
+  background-color: var(--primary);
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+}
+
+.icon-btn {
+  width: 64px;
+  height: 48px;
+  border-radius: 40px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

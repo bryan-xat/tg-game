@@ -1,0 +1,94 @@
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url('./assets/img-back-game.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: 0;
+}
+
+.adm-tab-bar-item {
+  color: var(--disable-color);
+}
+
+.adm-tab-bar-item-active {
+  color: var(--text-color);
+}
+
+.adm-tab-bar-wrap {
+  min-height: 64px;
+}
+
+.adm-tab-bar-item-icon {
+  height: auto;
+}
+
+.tag {
+  background: linear-gradient(113deg, #FEC503, #FFE280);
+  border-radius: 40px;
+  padding: 2px;
+}
+
+.tag .tag-content {
+  background-color: var(--tag-color);
+  height: 36px;
+  display: flex;
+  border-radius: 40px;
+  align-items: center;
+  color: var(--info);
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 2px;
+  padding-right: 6px;
+}
+
+.btn {
+  height: 48px;
+  width: 267px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.btn-big {
+  height: 56px;
+  width: 278px;
+}
+
+.btn-withdraw {
+  background-color: var(--btn-color);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.select {
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  background-color: var(--select);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.select-title {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.adm-input-element {
+  --font-size: 14px;
+}

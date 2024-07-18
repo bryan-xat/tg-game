@@ -1,0 +1,31 @@
+.sats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EFFBF0;
+  border-radius: 16px;
+  height: 99.45px;
+  width: 100%;
+  margin-top: 22px;
+}
+
+.withdraw-item {
+  width: 100%;
+  height: 80px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  margin-top: 16px;
+}
+
+.withdraw-item-btn {
+  height: 56px;
+  width: 102px;
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: 16px;
+  padding-top: 6px;
+}
+
