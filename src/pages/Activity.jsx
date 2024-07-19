@@ -1,5 +1,6 @@
 import imgBox from "@/assets/img-box.png";
 import imgListMoney from "@/assets/img-list-money.png";
+import ClickableShrink from "@/components/ClickableShrink";
 import "./Activity.css";
 
 const Activity = () => {
@@ -11,24 +12,32 @@ const Activity = () => {
       </div>
       <div className="px-[15px] w-full">
         <div className="activity-item">
-          <img src={imgListMoney} width={52} />
+          <img src={imgListMoney} width={52} className=""/>
           <div className="flex-1 flex flex-col justify-center pl-[12px]">
             <div className="leading-[16px]">Get 100000 sats for the opening game.</div>
             <div className="progress">
               <div className="content w-[100px]"></div>
             </div>
           </div>
-          <div className="btn-small ml-[24px]">Receive</div>
+          <ClickableShrink>
+            <div className="btn-small ml-[24px]">Receive</div>
+          </ClickableShrink>
         </div>
         <div className="activity-item">
-          <img src={imgListMoney} width={52} />
+          <img src={imgListMoney} width={52} style={{
+              filter: 'grayscale(100%)',
+            }}/>
           <div className="flex-1 flex flex-col justify-center pl-[12px]">
             <div className="leading-[16px]">Get 100000 sats for the opening game.</div>
             <div className="progress">
               <div className="content w-[100px]"></div>
             </div>
           </div>
-          <div className="btn-small ml-[24px]">Receive</div>
+          <ClickableShrink>
+            <div className="btn-small ml-[24px] text-disable" style={{
+              filter: 'grayscale(100%)',
+            }}>Receive</div>
+          </ClickableShrink>
         </div>
       </div>
     </div>

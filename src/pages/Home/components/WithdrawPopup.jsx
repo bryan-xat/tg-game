@@ -6,6 +6,7 @@ import imgMasonry from "@/assets/img-masonry.png";
 import { ActionSheet, Input } from "antd-mobile";
 import "./index.css";
 import { useState } from "react";
+import ClickableShrink from "@/components/ClickableShrink";
 
 function WithdrawPopup({ open, onClose }) {
   const [networkOpen, setNetworkOpen] = useState(false);
@@ -28,18 +29,20 @@ function WithdrawPopup({ open, onClose }) {
           <span className="text-[12px] text-disable">Withdrawal amount</span>
           <div className="flex items-start">
             <span className="font-bold">100,000,000,000</span>
-            <img src={imgMoney} width={20} className="ml-[4px]"/>
+            <img src={imgMoney} width={20} className="ml-[4px]" />
           </div>
         </div>
         <div className="flex justify-between items-center w-full mt-[8px] leading-[22px]">
           <span className="text-[12px] text-disable">Spend dimonds</span>
           <div className="flex items-start">
             <span className="font-bold">200</span>
-            <img src={imgMasonry} width={20} className="ml-[4px]"/>
+            <img src={imgMasonry} width={20} className="ml-[4px]" />
           </div>
         </div>
         <div className="flex-1 flex items-end w-full pb-[4vw]">
-          <div className="btn w-full">Withdraw</div>
+          <ClickableShrink className="w-full">
+            <div className="btn w-full">Withdraw</div>
+          </ClickableShrink>
         </div>
       </Popup>
       <ActionSheet

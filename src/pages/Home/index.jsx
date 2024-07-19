@@ -8,6 +8,7 @@ import imgWithdraw from "@/assets/img-withdraw.png";
 import { playUrl } from "@/config";
 import WithdrawListPopup from "./components/WithdrawListPopup";
 import { useState } from "react";
+import ClickableShrink from "@/components/ClickableShrink";
 
 const Home = () => {
   const [withdrawOpen, setWithdrawOpen] = useState(false);
@@ -38,22 +39,26 @@ const Home = () => {
       </div>
       <img src={imgTitle} width={336} className="mt-[30px]" />
       <div className="flex-1 flex flex-col justify-end pb-[18vw]">
-        <a className="mt-[60px] relative" href={playUrl}>
-          <img src={imgBtnPlay} width={278} />
-          <img
-            src={imgBtnPlayText}
-            className="absolute left-0 right-0 top-[5px] m-auto"
-          />
-        </a>
-        <div
-          className="btn btn-withdraw mt-[10px] btn-big"
-          onClick={() => setWithdrawOpen(true)}
-        >
-          <img src={imgWithdraw} />
-          <span className="text-[18px] font-semibold ml-[8px] text-main">
-            Withdraw
-          </span>
-        </div>
+        <ClickableShrink>
+          <a className="mt-[60px] relative" href={playUrl}>
+            <img src={imgBtnPlay} width={278} />
+            <img
+              src={imgBtnPlayText}
+              className="absolute left-0 right-0 top-[5px] m-auto"
+            />
+          </a>
+        </ClickableShrink>
+        <ClickableShrink>
+          <div
+            className="btn btn-withdraw mt-[10px] btn-big"
+            onClick={() => setWithdrawOpen(true)}
+          >
+            <img src={imgWithdraw} />
+            <span className="text-[18px] font-semibold ml-[8px] text-main">
+              Withdraw
+            </span>
+          </div>
+        </ClickableShrink>
       </div>
       <WithdrawListPopup
         open={withdrawOpen}

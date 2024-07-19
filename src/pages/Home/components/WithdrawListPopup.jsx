@@ -8,6 +8,7 @@ import "./index.css";
 import WithdrawPopup from "./WithdrawPopup";
 import WithdrawRecordPopup from "./WithdrawRecordPopup";
 import { useState } from "react";
+import ClickableShrink from "@/components/ClickableShrink";
 
 function WithdrawListPopup({ open, onClose }) {
   const [withdrawOpen, setWithdrawOpen] = useState(false);
@@ -23,7 +24,10 @@ function WithdrawListPopup({ open, onClose }) {
         </div>
         <div className="flex justify-between leading-[22px] w-full mt-[20px]">
           <span className=" font-bold ">Select Withdraw Amount</span>
-          <div className="flex items-center" onClick={() => setRecordOpen(true)}>
+          <div
+            className="flex items-center"
+            onClick={() => setRecordOpen(true)}
+          >
             <span>Record</span>
             <img
               src={iconArrowRight}
@@ -39,17 +43,30 @@ function WithdrawListPopup({ open, onClose }) {
             <div className="font-bold">240,000,000 Sats</div>
             <div className="text-disable text-[12px]">1/1 times</div>
           </div>
-          <div className="withdraw-item-btn" onClick={() => setWithdrawOpen(true)}>
-            <div className="flex items-center justify-center">
-              <img src={imgMasonry} width={20} />
-              <span className="text-[14px] font-bold leading-[22px]">100</span>
+          <ClickableShrink>
+            <div
+              className="withdraw-item-btn"
+              onClick={() => setWithdrawOpen(true)}
+            >
+              <div className="flex items-center justify-center">
+                <img src={imgMasonry} width={20} />
+                <span className="text-[14px] font-bold leading-[22px]">
+                  100
+                </span>
+              </div>
+              <div className="text-center text-[12px]">Withdraw</div>
             </div>
-            <div className="text-center text-[12px]">Withdraw</div>
-          </div>
+          </ClickableShrink>
         </div>
       </Popup>
-      <WithdrawPopup open={withdrawOpen} onClose={() => setWithdrawOpen(false)}/>
-      <WithdrawRecordPopup open={recordOpen} onClose={() => setRecordOpen(false)}/>
+      <WithdrawPopup
+        open={withdrawOpen}
+        onClose={() => setWithdrawOpen(false)}
+      />
+      <WithdrawRecordPopup
+        open={recordOpen}
+        onClose={() => setRecordOpen(false)}
+      />
     </>
   );
 }
