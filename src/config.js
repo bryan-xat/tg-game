@@ -2,13 +2,13 @@ export const playUrl = "https://7cf8-210-22-125-250.ngrok-free.app/";
 
 export const withdraws = [
   {
-    amount: 36660000,
-    masonry: 200,
+    amount: 150000000,
+    masonry: 700,
     times: "1/1",
   },
   {
-    amount: 50000000,
-    masonry: 700,
+    amount: 450000000,
+    masonry: 1750,
     times: "1/1",
   },
   {
@@ -24,7 +24,6 @@ export const withdraws = [
 ];
 
 export const networks = [
-  'BEP20',
   'ERC20',
 ]
 
