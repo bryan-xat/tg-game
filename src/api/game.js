@@ -2,6 +2,6 @@ import request from './request';
 
 const basePath = '/game'
 
-export const apiGameStart = () => request.post(`${basePath}/start`);
+export const apiGameStart = (data) => request.post(`${basePath}/start`, data);
 
-export const apiGameEnd = () => request.post(`${basePath}/end`);
+export const apiGameEnd = (data) => request.post(`${basePath}/end`, data);

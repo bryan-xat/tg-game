@@ -9,20 +9,24 @@ import WithdrawPopup from "./WithdrawPopup";
 import WithdrawRecordPopup from "./WithdrawRecordPopup";
 import { useState } from "react";
 import ClickableShrink from "@/components/ClickableShrink";
+import { coinType, withdraws } from '@/config'
+import { firstUpperCase, formatNumberWithCommas } from "@/utils";
 
-function WithdrawListPopup({ open, onClose }) {
-  const [withdrawOpen, setWithdrawOpen] = useState(false);
+function WithdrawListPopup({ open, onClose, user }) {
   const [recordOpen, setRecordOpen] = useState(false);
+  const [selected, setSelected] = useState(null)
 
   return (
     <>
       <Popup open={open} onClose={onClose} title="Withdraw">
         <div className="sats">
           <img src={imgSats} width={40} />
-          <span className="text-[22px] font-bold ml-[4px]">10,000,000,000</span>
-          <span className="text-[12px] text-disable ml-[2px]">Sats</span>
+          <span className="text-[22px] font-bold ml-[4px]">
+            {user?.coinBalance}
+          </span>
+          <span className="text-[12px] text-disable ml-[2px]">{firstUpperCase(coinType)}</span>
         </div>
-        <div className="flex justify-between leading-[22px] w-full mt-[20px]">
+        <div className="flex justify-between leading-[22px] w-full mt-[20px] mb-[16px]">
           <span className=" font-bold ">Select Withdraw Amount</span>
           <div
             className="flex items-center"
@@ -37,35 +41,42 @@ function WithdrawListPopup({ open, onClose }) {
             />
           </div>
         </div>
-        <div className="withdraw-item">
-          <img src={imgMoney} width={32} />
-          <div className="flex-1 ml-[4px]">
-            <div className="font-bold">240,000,000 Sats</div>
-            <div className="text-disable text-[12px]">1/1 times</div>
-          </div>
-          <ClickableShrink>
-            <div
-              className="withdraw-item-btn"
-              onClick={() => setWithdrawOpen(true)}
-            >
-              <div className="flex items-center justify-center">
-                <img src={imgMasonry} width={20} />
-                <span className="text-[14px] font-bold leading-[22px]">
-                  100
-                </span>
+        <div className="flex-1 hide-scrollbar w-full">
+          {withdraws.map((item, index) => (
+            <div className="withdraw-item" key={index}>
+              <img src={imgMoney} width={32} />
+              <div className="flex-1 ml-[4px]">
+                <div className="font-bold">{formatNumberWithCommas(item.amount)} {firstUpperCase(coinType)}</div>
+                <div className="text-disable text-[12px]">{item.times} times</div>
               </div>
-              <div className="text-center text-[12px]">Withdraw</div>
+              <ClickableShrink>
+                <div
+                  className="withdraw-item-btn"
+                  onClick={() => setSelected(item)}
+                >
+                  <div className="flex items-center justify-center">
+                    <img src={imgMasonry} width={20} />
+                    <span className="text-[14px] font-bold leading-[22px]">
+                      {item.masonry}
+                    </span>
+                  </div>
+                  <div className="text-center text-[12px]">Withdraw</div>
+                </div>
+              </ClickableShrink>
             </div>
-          </ClickableShrink>
+          ))}
         </div>
       </Popup>
       <WithdrawPopup
-        open={withdrawOpen}
-        onClose={() => setWithdrawOpen(false)}
+        open={selected !== null}
+        onClose={() => setSelected(null)}
+        selected={selected}
+        user={user}
       />
       <WithdrawRecordPopup
         open={recordOpen}
         onClose={() => setRecordOpen(false)}
+        user={user}
       />
     </>
   );
@@ -74,6 +85,7 @@ function WithdrawListPopup({ open, onClose }) {
 WithdrawListPopup.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default WithdrawListPopup;

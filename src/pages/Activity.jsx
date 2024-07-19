@@ -2,6 +2,8 @@ import imgBox from "@/assets/img-box.png";
 import imgListMoney from "@/assets/img-list-money.png";
 import ClickableShrink from "@/components/ClickableShrink";
 import "./Activity.css";
+import { firstUpperCase } from "@/utils";
+import { coinType } from "@/config";
 
 const Activity = () => {
   return (
@@ -14,7 +16,7 @@ const Activity = () => {
         <div className="activity-item">
           <img src={imgListMoney} width={52} className=""/>
           <div className="flex-1 flex flex-col justify-center pl-[12px]">
-            <div className="leading-[16px]">Get 100000 sats for the opening game.</div>
+            <div className="leading-[16px]">Get 100000 {firstUpperCase(coinType)} for the opening game.</div>
             <div className="progress">
               <div className="content w-[100px]"></div>
             </div>
@@ -28,7 +30,7 @@ const Activity = () => {
               filter: 'grayscale(100%)',
             }}/>
           <div className="flex-1 flex flex-col justify-center pl-[12px]">
-            <div className="leading-[16px]">Get 100000 sats for the opening game.</div>
+            <div className="leading-[16px]">Get 100000 {firstUpperCase(coinType)} for the opening game.</div>
             <div className="progress">
               <div className="content w-[100px]"></div>
             </div>

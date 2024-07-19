@@ -4,6 +4,8 @@ import Popup from "@/components/Popup";
 import "./index.css";
 import { useState } from "react";
 import { Skeleton } from "antd-mobile";
+import { firstUpperCase } from "@/utils";
+import { coinType } from "@/config";
 
 function WithdrawRecordPopup({ open, onClose }) {
   const [records, setRecords] = useState([0, 1]);
@@ -17,7 +19,7 @@ function WithdrawRecordPopup({ open, onClose }) {
           records.map((item) => (
             <div className="record-item" key={item}>
               <div className="font-bold flex justify-between leading-[22px]">
-                <span>Withdraw Sats</span>
+                <span>Withdraw {firstUpperCase(coinType)}</span>
                 <span>-10,000,000</span>
               </div>
               <div className="flex justify-between leading-[18px] text-[12px] mt-[2px]">
@@ -59,6 +61,7 @@ function WithdrawRecordPopup({ open, onClose }) {
 WithdrawRecordPopup.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default WithdrawRecordPopup;

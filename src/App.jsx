@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TabBar } from "antd-mobile";
+import { TabBar, Toast } from "antd-mobile";
 import iconActivityActive from "@/assets/icon-activity-active.svg";
 import iconActivity from "@/assets/icon-activity.svg";
 import iconFriendsActive from "@/assets/icon-friends-active.svg";
@@ -9,10 +9,12 @@ import iconGame from "@/assets/icon-game.svg";
 import Home from "@/pages/Home";
 import Activity from "@/pages/Activity";
 import Friends from "@/pages/Friends";
-import { apiRegisterUser } from "@/api/users";
+import { apiGetUser, apiRegisterUser } from "@/api/users";
 import "./App.css";
+import { showLoading } from "./utils";
 
 function App() {
+  const [user, setUser] = useState()
   const tabs = [
     {
       key: "Game",
@@ -22,7 +24,7 @@ function App() {
         ) : (
           <img src={iconGame} width={30} />
         ),
-      page: <Home />,
+      page: <Home user={user}/>,
     },
     {
       key: "Activity",
@@ -48,11 +50,24 @@ function App() {
   const [activeKey, setActiveKey] = useState(tabs[0].key);
 
   const updateUser = async () => {
-    await apiRegisterUser({
-      tgAccount: "5836525881",
-      tgName: "guanCong420",
-      inviteCode: "",
-    });
+    const loading = showLoading();
+    try {
+      await apiRegisterUser({
+        "tg_id": 5836525881,
+        "username": "guanCong420",
+        "firstName": "Bryan",
+        "lastName": "Cong",
+        "languageCode": "zh-hans",
+        "inviteCode": ""
+      });
+    } finally {
+      try {
+        const res = await apiGetUser(5836525881);
+        setUser(res.userInfo);
+      } finally {
+        loading.close();
+      }
+    }
   };
 
   useEffect(() => {
