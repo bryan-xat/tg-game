@@ -8,7 +8,7 @@ const Activity = () => {
     <div className="page bg-main">
       <div className="box">
         <img src={imgBox} width={120} />
-        <div>Complete tasks, earn rewards</div>
+        <div className="font-bold">Complete tasks, earn rewards</div>
       </div>
       <div className="px-[15px] w-full">
         <div className="activity-item">

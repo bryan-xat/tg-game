@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { TabBar } from "antd-mobile";
-import iconActivityActive from "@/assets/icon-activity-active.png";
-import iconActivity from "@/assets/icon-activity.png";
-import iconFriendsActive from "@/assets/icon-friends-active.png";
-import iconFriends from "@/assets/icon-friends.png";
-import iconGameActive from "@/assets/icon-game-active.png";
-import iconGame from "@/assets/icon-game.png";
+import iconActivityActive from "@/assets/icon-activity-active.svg";
+import iconActivity from "@/assets/icon-activity.svg";
+import iconFriendsActive from "@/assets/icon-friends-active.svg";
+import iconFriends from "@/assets/icon-friends.svg";
+import iconGameActive from "@/assets/icon-game-active.svg";
+import iconGame from "@/assets/icon-game.svg";
 import Home from "@/pages/Home";
 import Activity from "@/pages/Activity";
 import Friends from "@/pages/Friends";

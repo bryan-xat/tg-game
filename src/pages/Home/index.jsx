@@ -19,20 +19,20 @@ const Home = () => {
         <div className="tag">
           <div className="tag-content">
             <img src={imgMoney} width={32} />
-            <span className="ml-[1px]">100000k</span>
+            <span className="ml-[1px] font-extrabold">100000k</span>
           </div>
         </div>
         <div className="flex items-center">
           <div className="tag">
             <div className="tag-content">
               <img src={imgClock} width={32} />
-              <span className="ml-[1px]">700</span>
+              <span className="ml-[1px] font-extrabold">700</span>
             </div>
           </div>
           <div className="tag ml-[8px]">
             <div className="tag-content">
               <img src={imgMasonry} width={32} />
-              <span className="ml-[1px]">300</span>
+              <span className="ml-[1px] font-extrabold">300</span>
             </div>
           </div>
         </div>
@@ -44,7 +44,8 @@ const Home = () => {
             <img src={imgBtnPlay} width={278} />
             <img
               src={imgBtnPlayText}
-              className="absolute left-0 right-0 top-[5px] m-auto z-10"
+              className="absolute left-0 right-0 top-[18px] m-auto z-10"
+              width={135}
             />
           </a>
         </ClickableShrink>
@@ -53,8 +54,8 @@ const Home = () => {
             className="btn btn-withdraw mt-[10px] btn-big"
             onClick={() => setWithdrawOpen(true)}
           >
-            <img src={imgWithdraw} />
-            <span className="text-[18px] font-semibold ml-[8px] text-main">
+            <img src={imgWithdraw} width={36}/>
+            <span className="text-[18px] font-bold ml-[8px] text-main">
               Withdraw
             </span>
           </div>
