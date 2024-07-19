@@ -44,7 +44,7 @@ const Home = () => {
             <img src={imgBtnPlay} width={278} />
             <img
               src={imgBtnPlayText}
-              className="absolute left-0 right-0 top-[5px] m-auto"
+              className="absolute left-0 right-0 top-[5px] m-auto z-10"
             />
           </a>
         </ClickableShrink>
