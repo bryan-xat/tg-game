@@ -3,7 +3,7 @@ import Popup from "@/components/Popup";
 import imgMoney from "@/assets/img-money.png";
 import iconArrowDown from "@/assets/icon-arrow-down.svg";
 import imgMasonry from "@/assets/img-masonry.png";
-import { ActionSheet, Input } from "antd-mobile";
+import { ActionSheet, Input, Toast } from "antd-mobile";
 import "./index.css";
 import { useRef, useState } from "react";
 import ClickableShrink from "@/components/ClickableShrink";
@@ -26,6 +26,10 @@ function WithdrawPopup({ open, onClose, selected, user }) {
         walletAddress: inputRef.current.nativeElement.value,
         network,
       });
+      Toast.show({
+        icon: 'success',
+        content: 'Withdraw submitted successfully',
+      })
     } finally {
       loading.close();
     }
