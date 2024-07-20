@@ -113,7 +113,10 @@ const Home = ({ user, onReload }) => {
         open={withdrawOpen}
         onClose={() => setWithdrawOpen(false)}
         user={user}
-        onReload={onReload}
+        onWithdraw={() => {
+          setWithdrawOpen(false);
+          onReload();
+        }}
       />
     </div>
   );

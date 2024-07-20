@@ -14,7 +14,7 @@ import { firstUpperCase, formatNumberWithCommas } from "@/utils";
 import { apiGetWithdrawTimes } from "@/api/users";
 import { SpinLoading } from 'antd-mobile'
 
-function WithdrawListPopup({ open, onClose, user, onReload }) {
+function WithdrawListPopup({ open, onClose, user, onWithdraw }) {
   const [recordOpen, setRecordOpen] = useState(false);
   const [selected, setSelected] = useState(null)
   const [withdraws, setWithdraws] = useState()
@@ -32,10 +32,10 @@ function WithdrawListPopup({ open, onClose, user, onReload }) {
 
   const closeWithdraw = () => setSelected(null);
 
-  const onWithdraw = () => {
+  const handleWithdraw = () => {
     closeWithdraw();
     setTimeout(() => setRecordOpen(true), 300);
-    onReload();
+    onWithdraw();
   }
 
   return (
@@ -94,7 +94,7 @@ function WithdrawListPopup({ open, onClose, user, onReload }) {
         onClose={closeWithdraw}
         selected={selected}
         user={user}
-        onWithdraw={onWithdraw}
+        onWithdraw={handleWithdraw}
       />
       <WithdrawRecordPopup
         open={recordOpen}
@@ -109,7 +109,7 @@ WithdrawListPopup.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func,
   user: PropTypes.object,
-  onReload: PropTypes.func,
+  onWithdraw: PropTypes.func,
 };
 
 export default WithdrawListPopup;
