@@ -6,7 +6,6 @@ const ClickableShrink = ({ children, className }) => {
   const [isShrunk, setIsShrunk] = React.useState(false);
 
   const handleClick = () => {
-    console.log(123);
     setIsShrunk(true);
     setTimeout(() => setIsShrunk(false), 200); // 200ms 后还原
   };
