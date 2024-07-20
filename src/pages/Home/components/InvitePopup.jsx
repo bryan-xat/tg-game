@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Popup from "@/components/Popup";
 import ClickableShrink from "@/components/ClickableShrink";
 import "./index.css";
-import { copyLink, copyText } from "@/utils";
+import { copyLink } from "@/utils";
 import { showTgShare } from "@/utils";
 
 const InvitePopup = ({ open, onClose, user }) => {
