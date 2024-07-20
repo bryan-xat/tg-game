@@ -11,7 +11,7 @@ import { apiWithdraw } from "@/api/users";
 import { formatNumberWithCommas, showLoading } from "@/utils";
 import { coinType, networks } from "@/config";
 
-function WithdrawPopup({ open, onClose, selected, user }) {
+function WithdrawPopup({ open, onClose, selected, user, onWithdraw }) {
   const [networkOpen, setNetworkOpen] = useState(false);
   const [network, setNetwork] = useState(networks[0]);
   const inputRef = useRef();
@@ -30,6 +30,7 @@ function WithdrawPopup({ open, onClose, selected, user }) {
         icon: 'success',
         content: 'Withdraw submitted successfully',
       })
+      onWithdraw?.();
     } finally {
       loading.close();
     }
@@ -98,6 +99,7 @@ WithdrawPopup.propTypes = {
   onClose: PropTypes.func,
   selected: PropTypes.object,
   user: PropTypes.object,
+  onWithdraw: PropTypes.func,
 };
 
 export default WithdrawPopup;

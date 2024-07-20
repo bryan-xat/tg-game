@@ -7,14 +7,36 @@ import Popup from "@/components/Popup";
 import "./index.css";
 import WithdrawPopup from "./WithdrawPopup";
 import WithdrawRecordPopup from "./WithdrawRecordPopup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ClickableShrink from "@/components/ClickableShrink";
-import { coinType, withdraws } from '@/config'
+import { coinType } from '@/config'
 import { firstUpperCase, formatNumberWithCommas } from "@/utils";
+import { apiGetWithdrawTimes } from "@/api/users";
+import { SpinLoading } from 'antd-mobile'
 
-function WithdrawListPopup({ open, onClose, user }) {
+function WithdrawListPopup({ open, onClose, user, onReload }) {
   const [recordOpen, setRecordOpen] = useState(false);
   const [selected, setSelected] = useState(null)
+  const [withdraws, setWithdraws] = useState()
+
+  const getwithdraws = async () => {
+    const res = apiGetWithdrawTimes(user.tg_id);
+    setWithdraws(res.times);
+  }
+
+  useEffect(() => {
+    if (open) {
+      getwithdraws();
+    }
+  }, [open])
+
+  const closeWithdraw = () => setSelected(null);
+
+  const onWithdraw = () => {
+    closeWithdraw();
+    setTimeout(() => setRecordOpen(true), 300);
+    onReload();
+  }
 
   return (
     <>
@@ -42,12 +64,12 @@ function WithdrawListPopup({ open, onClose, user }) {
           </div>
         </div>
         <div className="flex-1 hide-scrollbar w-full">
-          {withdraws.map((item, index) => (
+          {withdraws ? withdraws.map((item, index) => (
             <div className="withdraw-item" key={index}>
               <img src={imgMoney} width={32} />
               <div className="flex-1 ml-[4px]">
-                <div className="font-bold">{formatNumberWithCommas(item.amount)} {firstUpperCase(coinType)}</div>
-                <div className="text-disable text-[12px]">{item.times} times</div>
+                <div className="font-bold">{formatNumberWithCommas(item.stats)} {firstUpperCase(coinType)}</div>
+                <div className="text-disable text-[12px]">{item.times}/{item.max_times} times</div>
               </div>
               <ClickableShrink>
                 <div
@@ -57,21 +79,22 @@ function WithdrawListPopup({ open, onClose, user }) {
                   <div className="flex items-center justify-center">
                     <img src={imgMasonry} width={20} />
                     <span className="text-[14px] font-bold leading-[22px]">
-                      {item.masonry}
+                      {item.diamond}
                     </span>
                   </div>
                   <div className="text-center text-[12px]">Withdraw</div>
                 </div>
               </ClickableShrink>
             </div>
-          ))}
+          )) : <SpinLoading className="mx-auto mt-[30px]"/>}
         </div>
       </Popup>
       <WithdrawPopup
         open={selected !== null}
-        onClose={() => setSelected(null)}
+        onClose={closeWithdraw}
         selected={selected}
         user={user}
+        onWithdraw={onWithdraw}
       />
       <WithdrawRecordPopup
         open={recordOpen}
@@ -86,6 +109,7 @@ WithdrawListPopup.propTypes = {
   open: PropTypes.bool,
   onClose: PropTypes.func,
   user: PropTypes.object,
+  onReload: PropTypes.func,
 };
 
 export default WithdrawListPopup;

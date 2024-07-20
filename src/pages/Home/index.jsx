@@ -14,7 +14,7 @@ import { apiGameEnd, apiGameStart } from "@/api/game";
 import { showLoading } from "@/utils";
 import Decimal from "decimal.js";
 
-const Home = ({ user }) => {
+const Home = ({ user, onReload }) => {
   const [withdrawOpen, setWithdrawOpen] = useState(false);
 
   const startGame = async () => {
@@ -113,6 +113,7 @@ const Home = ({ user }) => {
         open={withdrawOpen}
         onClose={() => setWithdrawOpen(false)}
         user={user}
+        onReload={onReload}
       />
     </div>
   );
@@ -120,6 +121,7 @@ const Home = ({ user }) => {
 
 Home.propTypes = {
   user: PropTypes.object,
+  onReload: PropTypes.func,
 };
 
 export default Home;

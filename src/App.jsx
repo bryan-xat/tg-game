@@ -11,10 +11,44 @@ import Activity from "@/pages/Activity";
 import Friends from "@/pages/Friends";
 import { apiGetUser, apiRegisterUser } from "@/api/users";
 import "./App.css";
-import { showLoading } from "./utils";
+import { getTgUser, showLoading } from "./utils";
 
 function App() {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState();
+
+  const [activeKey, setActiveKey] = useState("Game");
+
+  const updateUser = async () => {
+    const loading = showLoading();
+    const tgUser = getTgUser();
+    try {
+      await apiRegisterUser({
+        tg_id: tgUser.id,
+        username: tgUser.username,
+        firstName: tgUser.first_name,
+        lastName: tgUser.last_name,
+        languageCode: tgUser.language_code,
+        inviteCode: "",
+      });
+    } finally {
+      try {
+        const res = await apiGetUser(tgUser.id);
+        setUser(res.userInfo);
+      } finally {
+        loading.close();
+      }
+    }
+  };
+
+  const onReload = async () => {
+    const res = await apiGetUser(user.tg_id);
+    setUser(res.userInfo);
+  };
+
+  useEffect(() => {
+    updateUser();
+  }, []);
+
   const tabs = [
     {
       key: "Game",
@@ -24,7 +58,7 @@ function App() {
         ) : (
           <img src={iconGame} width={30} />
         ),
-      page: <Home user={user}/>,
+      page: <Home user={user} onReload={onReload} />,
     },
     {
       key: "Activity",
@@ -47,32 +81,6 @@ function App() {
       page: <Friends />,
     },
   ];
-  const [activeKey, setActiveKey] = useState(tabs[0].key);
-
-  const updateUser = async () => {
-    const loading = showLoading();
-    try {
-      await apiRegisterUser({
-        "tg_id": 5836525881,
-        "username": "guanCong420",
-        "firstName": "Bryan",
-        "lastName": "Cong",
-        "languageCode": "zh-hans",
-        "inviteCode": ""
-      });
-    } finally {
-      try {
-        const res = await apiGetUser(5836525881);
-        setUser(res.userInfo);
-      } finally {
-        loading.close();
-      }
-    }
-  };
-
-  useEffect(() => {
-    updateUser()
-  }, [])
 
   return (
     <div className="app">
