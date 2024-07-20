@@ -11,3 +11,5 @@ export const apiGetWithdrawTimes = (id) => request.get(`${basePath}/${id}/withdr
 export const apiGetWithdrawRecords = (params) => request.get(`${basePath}/${params.tg_id}/withdrawal/record`, {
   params,
 });
+
+export const apiGetInviteCode = (id) => request.get(`${basePath}/invite-code/${id}`);

@@ -65,6 +65,12 @@
   background-color: var(--btn-color);
 }
 
+.btn-main {
+  background-color: var(--bg-main);
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+}
+
 .page {
   display: flex;
   flex-direction: column;

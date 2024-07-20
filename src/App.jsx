@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TabBar, Toast } from "antd-mobile";
+import { TabBar } from "antd-mobile";
 import iconActivityActive from "@/assets/icon-activity-active.svg";
 import iconActivity from "@/assets/icon-activity.svg";
 import iconFriendsActive from "@/assets/icon-friends-active.svg";
@@ -15,20 +15,21 @@ import { getTgUser, showLoading } from "./utils";
 
 function App() {
   const [user, setUser] = useState();
-
   const [activeKey, setActiveKey] = useState("Game");
 
   const updateUser = async () => {
     const loading = showLoading();
     const tgUser = getTgUser();
     try {
+      const params = new URLSearchParams(window.location.search);
+      const inviteCode = params.get('inviteCode');
       await apiRegisterUser({
         tg_id: tgUser.id,
         username: tgUser.username,
         firstName: tgUser.first_name,
         lastName: tgUser.last_name,
         languageCode: tgUser.language_code,
-        inviteCode: "",
+        inviteCode: inviteCode ?? '',
       });
     } finally {
       try {
@@ -78,7 +79,7 @@ function App() {
         ) : (
           <img src={iconFriends} width={30} />
         ),
-      page: <Friends />,
+      page: <Friends user={user} />,
     },
   ];
 

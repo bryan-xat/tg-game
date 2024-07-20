@@ -2,49 +2,13 @@ import imgFriends from "@/assets/img-friends.png";
 import imgCopy from "@/assets/icon-copy.svg";
 import "./Frinds.css";
 import ClickableShrink from "@/components/ClickableShrink";
-import { useEffect } from "react";
+import { showTgShare, copyLink } from "@/utils";
+import PropTypes from "prop-types";
 
-const Friends = () => {
-  const tg = window.Telegram?.WebApp;
-  const shareMessage = "Use my link to get 2000 $Sats";
-
+const Friends = ({ user }) => {
   const onInviteFriend = () => {
-
-    tg?.showPopup({
-      title: "Share with",
-      message: shareMessage,
-      buttons: [
-        {
-          id: "send",
-          type: "default",
-          text: "Send",
-          callback_data: "send",
-        },
-        {
-          id: "cancel",
-          type: "destructive",
-          text: "Cancel",
-          callback_data: "cancel",
-        },
-      ],
-    });
+    showTgShare();
   };
-
-  useEffect(() => {
-    // 处理弹窗按钮点击事件
-    tg?.onEvent("popupClosed", (button_id) => {
-      if (button_id === "send") {
-        // 执行分享操作
-        tg.sendData(
-          JSON.stringify({
-            action: "share",
-            url: window.location.origin,
-            text: shareMessage,
-          })
-        );
-      }
-    });
-  }, []);
 
   return (
     <div className="page bg-main px-[16px]">
@@ -65,7 +29,9 @@ const Friends = () => {
         <div>
           <div className="font-medium flex items-center">
             <div className="badge"></div>
-            <span className="ml-[4px] font-bold">Invite a friend</span>
+            <span className="ml-[4px] font-bold">
+              Invite a friend with Telegram
+            </span>
           </div>
           <div className="text-disable text-[12px]">
             +2,000 Sats and one chance to play
@@ -74,14 +40,20 @@ const Friends = () => {
       </div>
       <div className="flex items-center mt-[30px]">
         <ClickableShrink>
-          <div className="btn w-[267px]" onClick={onInviteFriend}>Invite a friend</div>
+          <div className="btn w-[267px]" onClick={onInviteFriend}>
+            Invite a friend
+          </div>
         </ClickableShrink>
         <ClickableShrink className="icon-btn ml-[12px]">
-          <img src={imgCopy} width={24} />
+          <img src={imgCopy} width={24} onClick={() => copyLink(user.tg_id)} />
         </ClickableShrink>
       </div>
     </div>
   );
+};
+
+Friends.propTypes = {
+  user: PropTypes,
 };
 
 export default Friends;

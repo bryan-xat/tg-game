@@ -7,18 +7,20 @@ import imgBtnPlayText from "@/assets/img-btn-play-text.png";
 import imgWithdraw from "@/assets/img-withdraw.png";
 import { playUrl } from "@/config";
 import WithdrawListPopup from "./components/WithdrawListPopup";
+import InvitePopup from "./components/InvitePopup";
 import { useState } from "react";
 import ClickableShrink from "@/components/ClickableShrink";
 import PropTypes from "prop-types";
-import { apiGameEnd, apiGameStart } from "@/api/game";
+import { apiGameStart } from "@/api/game";
 import { showLoading } from "@/utils";
 import Decimal from "decimal.js";
 
 const Home = ({ user, onReload }) => {
   const [withdrawOpen, setWithdrawOpen] = useState(false);
+  const [inviteOpen, setInviteOpen] = useState(false);
 
   const startGame = async () => {
-    if (user?.gameTimesBalance > 0) {
+    if (user?.gameTimesBalance < 0) {
       const loading = showLoading();
       try {
         await apiGameStart({
@@ -34,20 +36,7 @@ const Home = ({ user, onReload }) => {
         loading.close();
       }
     } else {
-      
-    }
-  };
-
-  const endGame = async () => {
-    const loading = showLoading();
-    try {
-      await apiGameEnd({
-        tg_id: user?.tg_id,
-        endAt: Date.now(),
-        score: 0,
-      });
-    } finally {
-      loading.close();
+      setInviteOpen(true);
     }
   };
 
@@ -118,6 +107,7 @@ const Home = ({ user, onReload }) => {
           onReload();
         }}
       />
+      <InvitePopup open={inviteOpen} onClose={() => setInviteOpen(false)} />
     </div>
   );
 };

@@ -40,3 +40,11 @@
   --width: 100px;
   --height: 18px;
 }
+
+.invite-content {
+  background-color: rgba(15, 205, 43, 0.06);
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  margin-top: 30px;
+}
