@@ -1,4 +1,4 @@
-export const playUrl = "https://7cf8-210-22-125-250.ngrok-free.app/";
+export const playUrl = "http://3.25.55.94:8881/";
 
 export const withdraws = [
   {
