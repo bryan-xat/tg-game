@@ -2,14 +2,14 @@ import PropTypes from "prop-types";
 import { Popup as AntdPopup } from "antd-mobile";
 import './Popup.css'
 
-function Popup({ open, onClose, title, children }) {
+function Popup({ open, onClose, title, children, height = '100vh' }) {
   return (
     <AntdPopup
       visible={open}
       bodyStyle={{
         borderTopLeftRadius: "16px",
         borderTopRightRadius: "16px",
-        height: "100vh",
+        height,
       }}
       onClose={onClose}
       closeOnMaskClick
@@ -28,6 +28,7 @@ Popup.propTypes = {
   onClose: PropTypes.func,
   children: PropTypes.element,
   title: PropTypes.string,
+  height: PropTypes.string,
 };
 
 export default Popup;

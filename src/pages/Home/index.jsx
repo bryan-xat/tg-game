@@ -18,20 +18,23 @@ const Home = ({ user }) => {
   const [withdrawOpen, setWithdrawOpen] = useState(false);
 
   const startGame = async () => {
-    if (user?.gameTimesBalance <= 0) return;
-    const loading = showLoading();
-    try {
-      await apiGameStart({
-        tg_id: user?.tg_id,
-        startAt: Date.now(),
-      });
-      // eslint-disable-next-line no-undef
-      gtag("event", "start_game", {
-        event_name: "start_game",
-      });
-      window.location.href = playUrl;
-    } finally {
-      loading.close();
+    if (user?.gameTimesBalance > 0) {
+      const loading = showLoading();
+      try {
+        await apiGameStart({
+          tg_id: user?.tg_id,
+          startAt: Date.now(),
+        });
+        // eslint-disable-next-line no-undef
+        gtag("event", "start_game", {
+          event_name: "start_game",
+        });
+        window.location.href = playUrl;
+      } finally {
+        loading.close();
+      }
+    } else {
+      
     }
   };
 

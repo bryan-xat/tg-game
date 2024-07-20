@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.DEV ? '/api' : 'https://liked-alive-bulldog.ngrok-free.app',
   headers: {
     'Content-Type': 'application/json',
   }
