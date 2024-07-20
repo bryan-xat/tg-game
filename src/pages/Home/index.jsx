@@ -23,7 +23,7 @@ const Home = ({ user }) => {
     // eslint-disable-next-line no-undef
     gtag('event', 'click', {
       'event_category': 'Button',
-      'event_label': 'Start game',
+      'event_label': 'start_name',
       'value': 1,
     });
     try {
