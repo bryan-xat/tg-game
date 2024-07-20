@@ -20,7 +20,8 @@ function WithdrawListPopup({ open, onClose, user, onWithdraw }) {
   const [withdraws, setWithdraws] = useState()
 
   const getwithdraws = async () => {
-    const res = apiGetWithdrawTimes(user.tg_id);
+    const res = await apiGetWithdrawTimes(user.tg_id);
+    console.log(res);
     setWithdraws(res.times);
   }
 
