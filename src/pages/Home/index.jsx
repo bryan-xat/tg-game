@@ -29,7 +29,7 @@ const Home = ({ user, onReload }) => {
         gtag("event", "start_game", {
           event_name: "start_game",
         });
-        window.location.href = playUrl;
+        window.location.href = `${playUrl}?id=${user?.tg_id}`;
       } finally {
         loading.close();
       }
