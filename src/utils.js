@@ -20,18 +20,7 @@ export function firstUpperCase(str) {
 }
 
 export const getTgUser = () =>
-  JSON.parse(
-    import.meta.env.DEV
-      ? JSON.stringify({
-          id: 5836525881,
-          first_name: "Bryan",
-          last_name: "Cong",
-          username: "guanCong420",
-          language_code: "zh-hans",
-          allows_write_to_pm: true,
-        })
-      : window.Telegram?.WebApp?.initDataUnsafe?.user
-  );
+  JSON.parse(window.Telegram?.WebApp?.initDataUnsafe?.user ?? '{}');
 
 export const copyText = (text) => {
   navigator.clipboard
@@ -77,6 +66,7 @@ export const showTgShare = (code) => {
       );
     }
   });
-}
+};
 
-export const copyLink = (inviteCode) => copyText(`${window.location.origin}?inviteCode=${inviteCode}`)
+export const copyLink = (inviteCode) =>
+  copyText(`${window.location.origin}?inviteCode=${inviteCode}`);

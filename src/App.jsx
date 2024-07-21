@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TabBar } from "antd-mobile";
+import { TabBar, Toast } from "antd-mobile";
 import iconActivityActive from "@/assets/icon-activity-active.svg";
 import iconActivity from "@/assets/icon-activity.svg";
 import iconFriendsActive from "@/assets/icon-friends-active.svg";
@@ -19,8 +19,16 @@ function App() {
 
   const updateUser = async () => {
     const loading = showLoading();
+    const tgUser = getTgUser();
+    if (!tgUser.id) {
+      Toast.show({
+        icon: "error",
+        duration: 3000,
+        content: 'Tg user Not found',
+      })
+      return;
+    }
     try {
-      const tgUser = getTgUser();
       const params = new URLSearchParams(window.location.search);
       const inviteCode = params.get('inviteCode');
       await apiRegisterUser({
@@ -33,7 +41,6 @@ function App() {
       });
     } finally {
       try {
-        const tgUser = getTgUser();
         const res = await apiGetUser(tgUser.id);
         setUser(res.userInfo);
       } finally {
