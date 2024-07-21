@@ -19,8 +19,8 @@ function App() {
 
   const updateUser = async () => {
     const loading = showLoading();
-    const tgUser = getTgUser();
     try {
+      const tgUser = getTgUser();
       const params = new URLSearchParams(window.location.search);
       const inviteCode = params.get('inviteCode');
       await apiRegisterUser({
@@ -33,6 +33,7 @@ function App() {
       });
     } finally {
       try {
+        const tgUser = getTgUser();
         const res = await apiGetUser(tgUser.id);
         setUser(res.userInfo);
       } finally {
