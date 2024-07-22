@@ -20,7 +20,7 @@ const Home = ({ user, onReload }) => {
   const [inviteOpen, setInviteOpen] = useState(false);
 
   const startGame = async () => {
-    if (user?.gameTimesBalance > 0) {
+    if (user?.gameTimesBalance > -1) {
       const loading = showLoading();
       try {
         await apiGameStart({
