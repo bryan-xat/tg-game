@@ -1,4 +1,4 @@
-export const playUrl = "http://3.25.55.94:8881/";
+export const playUrl = "https://web-mobile.satsbubble.com/";
 
 export const withdraws = [
   {
@@ -27,4 +27,7 @@ export const networks = [
   'ERC20',
 ]
 
-export const coinType = 'sats'
+export const coinType = 'sats';
+
+export const tgWebappLink = 'https://t.me/satsbubble_bot/SatsBubble';
+

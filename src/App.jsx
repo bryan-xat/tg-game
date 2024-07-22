@@ -28,15 +28,14 @@ function App() {
     }
     const loading = showLoading();
     try {
-      const params = new URLSearchParams(window.location.search);
-      const inviteCode = params.get('inviteCode');
+      const initData = window.Telegram?.WebApp?.initDataUnsafe;
       await apiRegisterUser({
         tg_id: tgUser.id,
         username: tgUser.username,
         firstName: tgUser.first_name,
         lastName: tgUser.last_name,
         languageCode: tgUser.language_code,
-        inviteCode: inviteCode ?? '',
+        inviteCode: initData?.start_param ?? '',
       });
     } finally {
       try {
