@@ -7,12 +7,12 @@ import PropTypes from "prop-types";
 
 const Friends = ({ user }) => {
   const onInviteFriend = () => {
-    showTgShare();
+    showTgShare(user.tg_id);
   };
 
   return (
     <div className="page bg-main px-[16px]">
-      <img src={imgFriends} width={148} className="mt-[30px]" />
+      <img src={imgFriends} width={148} height={112.88} className="mt-[30px]" />
       <div className="text-[16px] leading-[24px] font-bold">
         Invite friend to earn rewards
       </div>
@@ -23,18 +23,7 @@ const Friends = ({ user }) => {
             <span className="ml-[4px] font-bold">Invite a friend</span>
           </div>
           <div className="text-disable text-[12px]">
-            +2,000 Sats and one chance to play
-          </div>
-        </div>
-        <div>
-          <div className="font-medium flex items-center">
-            <div className="badge"></div>
-            <span className="ml-[4px] font-bold">
-              Invite a friend with Telegram
-            </span>
-          </div>
-          <div className="text-disable text-[12px]">
-            +2,000 Sats and one chance to play
+            earn 2000 Sats and 2 diamonds with a maximum of 20 diamonds per day
           </div>
         </div>
       </div>
@@ -53,7 +42,7 @@ const Friends = ({ user }) => {
 };
 
 Friends.propTypes = {
-  user: PropTypes,
+  user: PropTypes.object,
 };
 
 export default Friends;

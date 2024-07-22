@@ -27,13 +27,12 @@ const Home = ({ user, onReload }) => {
           tg_id: user?.tg_id,
           startAt: Date.now(),
         });
-        // eslint-disable-next-line no-undef
-        gtag("event", "start_game", {
+        window.gtag("event", "start_game", {
           event_name: "start_game",
         });
-        window.location.href = `${playUrl}?id=${user?.tg_id}`;
       } finally {
         loading.close();
+        window.location.href = `${playUrl}?id=${user?.tg_id}`;
       }
     } else {
       setInviteOpen(true);
@@ -48,9 +47,9 @@ const Home = ({ user, onReload }) => {
             <img src={imgMoney} width={32} />
             <span className="ml-[1px] font-extrabold">
               {user?.coinBalance !== undefined
-                ? user.coinBalance > 1000
-                  ? new Decimal(user?.coinBalance).div(1000).toString
-                  : user.coinBalance
+                ? (user.coinBalance > 1000
+                  ? `${new Decimal(user?.coinBalance).div(1000)}k`
+                  : user.coinBalance)
                 : "-"}
             </span>
           </div>
@@ -74,10 +73,10 @@ const Home = ({ user, onReload }) => {
           </div>
         </div>
       </div>
-      <img src={imgTitle} width={336} className="mt-[30px]" />
+      <img src={imgTitle} width={336} height={233} className="mt-[30px]" />
       <div className="flex-1 flex flex-col justify-end pb-[18vw]">
         <ClickableShrink>
-          <div className="mt-[60px] relative" onClick={startGame}>
+          <div className="relative" onClick={startGame}>
             <img src={imgBtnPlay} width={278} />
             <img
               src={imgBtnPlayText}

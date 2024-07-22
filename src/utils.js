@@ -1,10 +1,12 @@
 import { Toast } from "antd-mobile";
+import { initUtils } from '@telegram-apps/sdk';
 
 export const showLoading = () =>
   Toast.show({
     icon: "loading",
     content: "loading...",
     duration: 0,
+    maskClickable: false,
   });
 
 export function formatNumberWithCommas(num) {
@@ -19,54 +21,40 @@ export function firstUpperCase(str) {
   return str[0].toUpperCase() + str.slice(1, str.length);
 }
 
-export const getTgUser = () =>
-  JSON.parse(window.Telegram?.WebApp?.initDataUnsafe?.user ?? '{}');
+export const getTgUser = () => 
+  // window.Telegram?.WebApp?.initDataUnsafe?.user
+  import.meta.env.DEV
+      ? {
+        id: 5836525881,
+        first_name: "Bryan",
+        last_name: "Cong",
+        username: "guanCong420",
+        language_code: "zh-hans",
+        allows_write_to_pm: true,
+      }
+      : window.Telegram?.WebApp?.initDataUnsafe?.user;
 
 export const copyText = (text) => {
   navigator.clipboard
     .writeText(text)
     .then(function () {
-      Toast.success("Text copied to clipboard.");
+      Toast.show({
+        icon: 'success',
+        content: "Copy Success",
+      });
     })
     .catch(function (err) {
-      Toast.error("Unable to copy text.");
+      Toast.show({
+        icon: 'fail',
+        content: "Unable to copy",
+      });
     });
 };
 
 export const showTgShare = (code) => {
+  const utils = initUtils();
   const shareMessage = "Use my link to get 2000 $Sats";
-  const tg = window.Telegram?.WebApp;
-  tg?.showPopup({
-    title: "Share with",
-    message: shareMessage,
-    buttons: [
-      {
-        id: "send",
-        type: "default",
-        text: "Send",
-        callback_data: "send",
-      },
-      {
-        id: "cancel",
-        type: "destructive",
-        text: "Cancel",
-        callback_data: "cancel",
-      },
-    ],
-  });
-  tg?.onEvent("popupClosed", (button_id) => {
-    if (button_id === "send") {
-      // 执行分享操作
-      tg.sendData(
-        JSON.stringify({
-          action: "share",
-          url: `${window.location.origin}?inviteCode=${code}`,
-          text: shareMessage,
-        })
-      );
-    }
-  });
-};
+  utils.shareURL(`https://t.me/satsbubble_bot?inviteCode=${code}`, shareMessage);
+}
 
-export const copyLink = (inviteCode) =>
-  copyText(`${window.location.origin}?inviteCode=${inviteCode}`);
+export const copyLink = (inviteCode) => copyText(`https://t.me/satsbubble_bot?inviteCode=${inviteCode}`)

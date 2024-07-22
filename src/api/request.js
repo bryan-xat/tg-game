@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'https://liked-alive-bulldog.ngrok-free.app',
+  baseURL: ' https://api.satsbubble.com',
   headers: {
     'Content-Type': 'application/json',
   }

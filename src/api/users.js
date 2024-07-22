@@ -13,3 +13,7 @@ export const apiGetWithdrawRecords = (params) => request.get(`${basePath}/${para
 });
 
 export const apiGetInviteCode = (id) => request.get(`${basePath}/invite-code/${id}`);
+
+export const apiGetTasks = (tg_id) => request.get(`${basePath}/${tg_id}/tasks`);
+
+export const apiCompleteTasks = (tg_id, task_id) => request.get(`${basePath}/${tg_id}/tasks/${task_id}`);

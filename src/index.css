@@ -21,6 +21,9 @@
 body {
   color: var(--text-color);
 }
+svg {
+  display: inline;  
+}
 
 
 body {
@@ -57,4 +60,9 @@ body {
 
 .text-secondary {
   color: var(--secondary);
+}
+
+.disable {
+  filter: grayscale(100%);
+  color: var(--disable-color);
 }

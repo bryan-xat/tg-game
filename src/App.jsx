@@ -18,16 +18,15 @@ function App() {
   const [activeKey, setActiveKey] = useState("Game");
 
   const updateUser = async () => {
-    const loading = showLoading();
     const tgUser = getTgUser();
-    if (!tgUser.id) {
+    if (!tgUser?.id) {
       Toast.show({
-        icon: "error",
-        duration: 3000,
+        duration: 0,
         content: 'Tg user Not found',
       })
       return;
     }
+    const loading = showLoading();
     try {
       const params = new URLSearchParams(window.location.search);
       const inviteCode = params.get('inviteCode');
@@ -77,7 +76,7 @@ function App() {
         ) : (
           <img src={iconActivity} width={30} />
         ),
-      page: <Activity />,
+      page: <Activity user={user}/>,
     },
     {
       key: "Friends",

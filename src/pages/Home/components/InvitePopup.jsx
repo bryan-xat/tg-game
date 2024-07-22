@@ -18,7 +18,7 @@ const InvitePopup = ({ open, onClose, user }) => {
         <div className="btn w-full btn-main">Copy Link</div>
       </ClickableShrink>
       <ClickableShrink className="mt-[10px] w-full">
-        <div className="btn w-full" onClick={showTgShare}>
+        <div className="btn w-full" onClick={() => showTgShare(user.tg_id)}>
           Send
         </div>
       </ClickableShrink>

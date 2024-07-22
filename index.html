@@ -6,19 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Game</title>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7DX9HH7BFL"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H0RTBY9Q2J"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-7DX9HH7BFL');
+    gtag('js', new Date()); gtag('config', 'G-H0RTBY9Q2J'); 
   </script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
   <script>
     // VConsole 默认会挂载到 `window.VConsole` 上
     var vConsole = new window.VConsole();
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+    Telegram.WebApp.BackButton.hide();
   </script>
 </head>
 
