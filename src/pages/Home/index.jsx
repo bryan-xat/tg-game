@@ -41,7 +41,7 @@ const Home = ({ user, onReload }) => {
         });
         utils.openTelegramLink()
         // window.location.href = `${playUrl}?id=${user?.tg_id}`;
-        utils.openTelegramLink(`https://t.me/BryanCong_bot/app?code=1234`)
+        utils.openTelegramLink(`https://t.me/BryanCong_bot/game`)
       }
     } else {
       setInviteOpen(true);
