@@ -2,7 +2,7 @@ import imgTitle from "@/assets/img-title.png";
 import imgMoney from "@/assets/img-money.png";
 import imgClock from "@/assets/img-clock.png";
 import imgMasonry from "@/assets/img-masonry.png";
-import imgBtnPlay from "@/assets/img-btn-play.png";
+import imgBtnPlay from "@/assets/img-btn-play.jpg";
 import imgBtnPlayText from "@/assets/img-btn-play-text.png";
 import imgWithdraw from "@/assets/img-withdraw.png";
 import { playUrl } from "@/config";
@@ -14,13 +14,15 @@ import PropTypes from "prop-types";
 import { apiGameStart } from "@/api/game";
 import { showLoading } from "@/utils";
 import Decimal from "decimal.js";
+import { initUtils } from '@telegram-apps/sdk';
 
 const Home = ({ user, onReload }) => {
   const [withdrawOpen, setWithdrawOpen] = useState(false);
   const [inviteOpen, setInviteOpen] = useState(false);
+  const utils = initUtils();
 
   const startGame = async () => {
-    if (user?.gameTimesBalance > -1) {
+    if (user?.gameTimesBalance > 0) {
       const loading = showLoading();
       try {
         await apiGameStart({
@@ -32,7 +34,14 @@ const Home = ({ user, onReload }) => {
         });
       } finally {
         loading.close();
-        window.location.href = `${playUrl}?id=${user?.tg_id}`;
+        const tg = window.Telegram.WebApp;
+        tg.BackButton.show();
+        tg.BackButton.onClick(() => {
+          window.history.back();
+        });
+        utils.openTelegramLink()
+        // window.location.href = `${playUrl}?id=${user?.tg_id}`;
+        utils.openTelegramLink(`https://t.me/BryanCong_bot/app?code=1234`)
       }
     } else {
       setInviteOpen(true);
@@ -73,7 +82,7 @@ const Home = ({ user, onReload }) => {
           </div>
         </div>
       </div>
-      <img src={imgTitle} width={336} height={233} className="mt-[30px]" />
+      <img src={imgTitle} width={336} height={233} className="mt-[40px]" />
       <div className="flex-1 flex flex-col justify-end pb-[18vw]">
         <ClickableShrink>
           <div className="relative" onClick={startGame}>
@@ -106,7 +115,7 @@ const Home = ({ user, onReload }) => {
           onReload();
         }}
       />
-      <InvitePopup open={inviteOpen} onClose={() => setInviteOpen(false)} />
+      <InvitePopup open={inviteOpen} onClose={() => setInviteOpen(false)} user={user}/>
     </div>
   );
 };

@@ -21,7 +21,7 @@ function WithdrawPopup({ open, onClose, selected, user, onWithdraw }) {
     try {
       await apiWithdraw({
         tg_id: user.tg_id,
-        amount: selected.amount,
+        amount: selected.stats,
         currencyType: coinType,
         walletAddress: inputRef.current.nativeElement.value,
         network,
@@ -57,7 +57,7 @@ function WithdrawPopup({ open, onClose, selected, user, onWithdraw }) {
           <span className="text-[12px] text-disable">Withdrawal amount</span>
           <div className="flex items-start">
             <span className="font-bold">
-              {formatNumberWithCommas(selected?.amount)}
+              {formatNumberWithCommas(selected?.stats)}
             </span>
             <img src={imgMoney} width={20} className="ml-[4px]" />
           </div>
@@ -65,7 +65,7 @@ function WithdrawPopup({ open, onClose, selected, user, onWithdraw }) {
         <div className="flex justify-between items-center w-full mt-[8px] leading-[22px]">
           <span className="text-[12px] text-disable">Spend dimonds</span>
           <div className="flex items-start">
-            <span className="font-bold">{selected?.masonry}</span>
+            <span className="font-bold">{selected?.diamond}</span>
             <img src={imgMasonry} width={20} className="ml-[4px]" />
           </div>
         </div>

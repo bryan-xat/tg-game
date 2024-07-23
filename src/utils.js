@@ -2,8 +2,6 @@ import { Toast } from "antd-mobile";
 import { initUtils } from '@telegram-apps/sdk';
 import { tgWebappLink } from "./config";
 
-
-
 export const showLoading = () =>
   Toast.show({
     icon: "loading",
