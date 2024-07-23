@@ -22,6 +22,8 @@ const Home = ({ user, onReload }) => {
   const utils = initUtils();
 
   const startGame = async () => {
+    utils.openTelegramLink(`https://t.me/BryanCong_bot/game`)
+    return;
     if (user?.gameTimesBalance > 0) {
       const loading = showLoading();
       try {
@@ -40,8 +42,7 @@ const Home = ({ user, onReload }) => {
           window.history.back();
         });
         utils.openTelegramLink()
-        // window.location.href = `${playUrl}?id=${user?.tg_id}`;
-        utils.openTelegramLink(`https://t.me/BryanCong_bot/game`)
+        window.location.href = `${playUrl}?id=${user?.tg_id}`;
       }
     } else {
       setInviteOpen(true);
