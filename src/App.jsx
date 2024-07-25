@@ -46,22 +46,11 @@ function App() {
       try {
         const res = await apiGetUser(tgUser.id);
         setUser(res.userInfo);
-        document.addEventListener("visibilitychange", visibilitychange);
-        window.addEventListener("focus", () => {
-          console.log('focus');
-        })
       } finally {
         loading.close();
       }
     }
   };
-
-  function visibilitychange() {
-    console.log('visibilitychange');
-    if (document.visibilityState === "visible") {
-      onReload();
-    }
-  }
 
   useEffect(() => {
     updateUser();
@@ -69,6 +58,15 @@ function App() {
       document.addEventListener("remove", visibilitychange);
     };
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      window.addEventListener("focus", onReload)
+    }
+    return () => {
+      window.removeEventListener("focus", onReload)
+    }
+  }, [user])
 
   const tabs = [
     {
