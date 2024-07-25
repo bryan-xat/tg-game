@@ -54,9 +54,6 @@ function App() {
 
   useEffect(() => {
     updateUser();
-    return () => {
-      document.addEventListener("remove", visibilitychange);
-    };
   }, []);
 
   useEffect(() => {
