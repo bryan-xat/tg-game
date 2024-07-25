@@ -20,11 +20,36 @@
     Telegram.WebApp.ready();
     Telegram.WebApp.expand();
     Telegram.WebApp.BackButton.hide();
+    // const handleFileChange = async (event) => {
+    //   console.log(event);
+    //   const selectedFile = event.target.files[0];
+    //   if (selectedFile) {
+    //     const formData = new FormData();
+    //     formData.append('file', selectedFile);
+
+    //     try {
+    //       const response = await fetch('https://s3.ap-southeast-1.amazonaws.com/kyc.autoclan.test/upload/test/aaa.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAYOFFF57HANSIQEWG%2F20240725%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20240725T081515Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&x-id=PutObject&X-Amz-Signature=b076138f4747cfaf69fee865567d0c1c971823e6c9d13d6e7e2313044a554f4a', {
+    //         method: 'PUT',
+    //         body: formData,
+    //       });
+
+    //       if (response.ok) {
+    //         alert('File uploaded successfully!');
+    //       } else {
+    //         alert('File upload failed!');
+    //       }
+    //     } catch (error) {
+    //       console.error('Error uploading file:', error);
+    //       alert('Error uploading file!');
+    //     }
+    //   }
+    // };
   </script>
 </head>
 
 <body>
   <div id="root"></div>
+  <!-- <input type="file" onchange="handleFileChange(event)"> -->
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

@@ -17,13 +17,18 @@ function App() {
   const [user, setUser] = useState();
   const [activeKey, setActiveKey] = useState("Game");
 
+  const onReload = async () => {
+    const res = await apiGetUser(user.tg_id);
+    setUser(res.userInfo);
+  };
+
   const updateUser = async () => {
     const tgUser = getTgUser();
     if (!tgUser?.id) {
       Toast.show({
         duration: 0,
-        content: 'Tg user Not found',
-      })
+        content: "Tg user Not found",
+      });
       return;
     }
     const loading = showLoading();
@@ -35,25 +40,29 @@ function App() {
         firstName: tgUser.first_name,
         lastName: tgUser.last_name,
         languageCode: tgUser.language_code,
-        inviteCode: initData?.start_param ?? '',
+        inviteCode: initData?.start_param ?? "",
       });
     } finally {
       try {
-        const res = await apiGetUser(tgUser.id);
-        setUser(res.userInfo);
+        await onReload();
+        document.addEventListener("visibilitychange", visibilitychange);
       } finally {
         loading.close();
       }
     }
   };
 
-  const onReload = async () => {
-    const res = await apiGetUser(user.tg_id);
-    setUser(res.userInfo);
-  };
+  function visibilitychange() {
+    if (document.visibilityState === "visible") {
+      onReload();
+    }
+  }
 
   useEffect(() => {
     updateUser();
+    return () => {
+      document.addEventListener("remove", visibilitychange);
+    };
   }, []);
 
   const tabs = [
@@ -75,7 +84,7 @@ function App() {
         ) : (
           <img src={iconActivity} width={30} />
         ),
-      page: <Activity user={user}/>,
+      page: <Activity user={user} />,
     },
     {
       key: "Friends",

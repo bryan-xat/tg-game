@@ -14,16 +14,12 @@ import PropTypes from "prop-types";
 import { apiGameStart } from "@/api/game";
 import { showLoading } from "@/utils";
 import Decimal from "decimal.js";
-import { initUtils } from '@telegram-apps/sdk';
 
 const Home = ({ user, onReload }) => {
   const [withdrawOpen, setWithdrawOpen] = useState(false);
   const [inviteOpen, setInviteOpen] = useState(false);
-  const utils = initUtils();
 
   const startGame = async () => {
-    utils.openTelegramLink(`https://t.me/BryanCong_bot/game`)
-    return;
     if (user?.gameTimesBalance > 0) {
       const loading = showLoading();
       try {
@@ -36,12 +32,6 @@ const Home = ({ user, onReload }) => {
         });
       } finally {
         loading.close();
-        const tg = window.Telegram.WebApp;
-        tg.BackButton.show();
-        tg.BackButton.onClick(() => {
-          window.history.back();
-        });
-        utils.openTelegramLink()
         window.location.href = `${playUrl}?id=${user?.tg_id}`;
       }
     } else {
