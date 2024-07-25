@@ -44,7 +44,8 @@ function App() {
       });
     } finally {
       try {
-        await onReload();
+        const res = await apiGetUser(tgUser.id);
+        setUser(res.userInfo);
         document.addEventListener("visibilitychange", visibilitychange);
       } finally {
         loading.close();
