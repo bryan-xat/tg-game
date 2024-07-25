@@ -47,6 +47,9 @@ function App() {
         const res = await apiGetUser(tgUser.id);
         setUser(res.userInfo);
         document.addEventListener("visibilitychange", visibilitychange);
+        window.addEventListener("focus", () => {
+          console.log('focus');
+        })
       } finally {
         loading.close();
       }
