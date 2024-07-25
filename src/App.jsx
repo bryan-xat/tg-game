@@ -54,6 +54,7 @@ function App() {
   };
 
   function visibilitychange() {
+    console.log('visibilitychange');
     if (document.visibilityState === "visible") {
       onReload();
     }
